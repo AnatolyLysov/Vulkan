@@ -1,0 +1,30 @@
+https://www.geeksforgeeks.org/linux-unix/how-to-download-file-on-linux-terminal/
+
+sudo apt install wget
+
+https://sdk.lunarg.com/sdk/download/1.4.313.0/linux/vulkansdk-linux-x86_64-1.4.313.0.tar.xz
+
+
+download Vulkan SDK from https://vulkan.lunarg.com/sdk/home 
+
+
+how to download by terminal
+https://www.geeksforgeeks.org/linux-unix/how-to-download-file-on-linux-terminal/
+
+
+download to aikidance@aikidance:~/downloads$ 
+wget aikidance/aikidance/downloads https://sdk.lunarg.com/sdk/download/1.4.313.0/linux/vulkansdk-linux-x86_64-1.4.313.0.tar.xz
+
+
+sudo apt update
+sudo apt upgrade
+
+
+sudo apt install xz-utils
+
+aikidance@aikidance:~/downloads$ sha256sum ./vulkansdk-linux-x86_64-1.4.313.0.tar.xz
+4e957b66ade85eeaee95932aa7e3b45aea64db373c58a5eaefc8228cc71445c2  ./vulkansdk-linux-x86_64-1.4.313.0.tar.xz
+
+tar xf ./vulkansdk-linux-x86_64-1.4.313.0.tar.xz
+
+sudo apt install libxcb-xinput0 libxcb-xinerama0 libxcb-cursor-dev

@@ -1,0 +1,343 @@
+Getting Started with the Linux Tarball Vulkan SDK
+Creative Commons
+
+Vulkan SDK Introduction
+This guide describes the content, the requirements and procedure for getting started with the Vulkan SDK.
+
+The Khronos Vulkan API is an explicit, low-overhead, cross-platform graphics and compute API. Vulkan provides applications with control over the system execution and the system memory to maximize application efficiency on a wide variety of devices from PCs and consoles to mobile phones and embedded platforms.
+
+The Vulkan SDK enables Vulkan developers to develop Vulkan applications. The Vulkan SDK includes:
+
+Vulkan API usage validation thanks to the Khronos Validation layer.
+Vulkan Layers configuration thanks to Vulkan Configurator.
+SPIR-V Shader compilation, optimization and validation tools such as slang, DXC, SPIRV Reflect, and SPIRV-cross. See the SPIR-V Toolchain document for a complete list of the tools included.
+Vulkan API capture and replay for Vulkan debugging thanks to GFXReconstruct.
+Vulkan Capabilities Viewer. The new and perfered way to identify your devices capabilities, and contribute to an open source database of GPU capabilities.
+Third-party libraries and tools such as Volk, and VMA.
+All documentation for the SDK can be found and downloaded online at vulkan.lunarg.com.
+
+Important: This SDK does not install Vulkan drivers!! It only provides tools and libraries for application development and debugging. If you are looking for drivers, please refer to your system GPU vendor's website.
+
+Looking for Validation Layer Binaries for Android?
+
+With each SDK release, a release of the Khronos Validation Layer binaries for Android are released on the Validation layer Repository. The Android binaries are not included in this SDK.
+
+Terminology
+Term	Description
+DXC	Microsoft's Open Source DirectX Shader Compiler
+ICD	Installable Client Driver: A Vulkan compatible display driver
+GLSL	OpenGL Shading Language
+HLSL	DirectX High-Level Shading Language
+SPIR-V	Standard Portable Intermediate Representation is a cross-API intermediate language (IL) that natively represents parallel compute and graphics programs
+VMA	The Vulkan Memory Allocator library provided by AMD.
+Vulkan Instance	The Vulkan API object that stores all per-application states
+Vulkan Layer	A library designed to work as a plug-in for the loader. It usually serves to provide validation and debugging functionality to applications
+Vulkan Loader	A library which implements the Vulkan API entry points and manages layers, extensions, and drivers. It is found in the independent hardware vendor driver installs
+System requirements
+Your Linux development and host systems must meet specific hardware and software requirements to install the Vulkan SDK and create Vulkan applications. You will need a Vulkan ICD to execute Vulkan applications.
+
+The Vulkan SDK is supported on 64-bit Linux systems.
+
+The precompiled Linux “x86_64” binaries provided on vulkan.lunarg.com require GLIBC 2.31 or higher.
+
+This guide provides instructions for the following Linux distributions:
+
+Ubuntu 22.04 and 24.04
+Fedora CoreOS
+Arch Linux (latest)
+LunarG does extensive testing on the Ubuntu distributions and touch testing on the other Linux distributions. Additional Linux distributions may work but have not been verified. If the pre-built binaries don't run on your system we provide the source and a helper script to build these components (See Helper Build Script. Also, you can search your distribution's package manager for Vulkan development libraries.
+
+Otherwise you may download and build from publicly available repositories. Everything provided in the SDK is open source. The following list are the core repositories that the SDK is composed of:
+
+Khronos Vulkan Headers: https://github.com/KhronosGroup/Vulkan-Headers
+Khronos Vulkan Loader source: https://github.com/KhronosGroup/Vulkan-Loader
+Khronos Vulkan Validation Layers source: https://github.com/KhronosGroup/Vulkan-ValidationLayers
+Khronos Vulkan Tools source: https://github.com/KhronosGroup/Vulkan-Tools
+LunarG Vulkan Tools source: https://github.com/LunarG/VulkanTools
+Khronos glslang source: https://github.com/KhronosGroup/glslang
+Google Shaderc source: https://github.com/google/shaderc
+Khronos SPIRV-Headers source: https://github.com/KhronosGroup/SPIRV-Headers
+Khronos SPIRV-Tools source: https://github.com/KhronosGroup/SPIRV-Tools
+Khronos SPIRV-Cross source: https://github.com/KhronosGroup/SPIRV-Cross
+LunarG GFXReconstruct source: https://github.com/LunarG/gfxreconstruct
+Khronos SPIRV-Reflect source: https://github.com/KhronosGroup/SPIRV-Reflect
+Khronos Vulkan Extension Layer source: https://github.com/KhronosGroup/Vulkan-ExtensionLayer
+Khronos Vulkan Profiles: https://github.com/KhronosGroup/Vulkan-Profiles
+Microsoft DirectX Shader Compiler: https://github.com/microsoft/DirectXShaderCompiler
+Volk Vulkan Meta Loader: https://github.com/zeux/volk
+Vulkan Memory Allocator Library: https://gpuopen.com/vulkan-memory-allocator/
+Vulkan Caps Viewer: https://github.com/SaschaWillems/VulkanCapsViewer
+Vulkan Utility Libraries: https://github.com/KhronosGroup/Vulkan-Utility-Libraries.git
+Crash Diagnostic Layer: https://github.com/LunarG/CrashDiagnosticLayer.git
+Vulkan Profiles: https://github.com/KhronosGroup/Vulkan-Profiles.git
+slang: https://github.com/shader-slang/slang.git
+You will find instructions to build all of the above in their respective repositories.
+
+Ubuntu distributions (22.04 and 24.04)
+Upgrade your system to be current on package updates:
+
+sudo apt update
+sudo apt upgrade
+xz-utils is needed to decompress the SDK, install it by running:
+
+sudo apt install xz-utils
+If you want to clone and build any of the repositories using the vulkansdk script, install the following prerequisite packages:
+
+sudo apt-get install libglm-dev cmake libxcb-dri3-0 libxcb-present0 libpciaccess0 \
+libpng-dev libxcb-keysyms1-dev libxcb-dri3-dev libx11-dev g++ gcc \
+libwayland-dev libxrandr-dev libxcb-randr0-dev libxcb-ewmh-dev \
+git python-is-python3 bison libx11-xcb-dev liblz4-dev libzstd-dev \
+ocaml-core ninja-build pkg-config libxml2-dev wayland-protocols python3-jsonschema \
+clang-format qtbase5-dev qt6-base-dev
+Minimum CMake 3.17.2 version is required.
+
+Fedora CoreOS distributions
+Update your system to be current on package updates:
+
+sudo dnf update
+xz is needed to decompress the SDK, install it by running:
+
+sudo dnf install xz
+If you want clone and build any of the repositories using the vulkansdk script, install the following prerequisite packages:
+
+sudo dnf install @development-tools glm-devel cmake libpng-devel wayland-devel \
+libpciaccess-devel libX11-devel libXpresent libxcb xcb-util libxcb-devel libXrandr-devel \
+xcb-util-keysyms-devel xcb-util-wm-devel python3 git lz4-devel libzstd-devel python3-distutils-extra qt \
+gcc-g++ wayland-protocols-devel ninja-build python3-jsonschema qt5-qtbase-devel qt6-qtbase-devel
+Minimum CMake 3.17.2 version is required.
+
+Raspbian (Raspberry Pi OS)
+You can now build the Vulkan SDK on a Raspberry Pi 4 device runing the latest Raspberry Pi operating system. First you must update your system and install the Vulkan ICD. This is working as of the 1.3.224.0 SDK release, but we are not testing each new release. As the Vulkan environment evolves on the Raspberry Pi, this may change. If you find an issue, submit it to vulkan.lunarg.com and we will determine if it can be fixed.
+
+sudo apt update
+sudo apt upgrade
+
+sudo apt install mesa-vulkan-drivers vulkan-tools
+xz-utils is needed to decompress the SDK, install it by running:
+
+sudo apt install xz-utils
+If you want to clone and build any of the repositories using the vulkansdk script, install the following prerequisite packages:
+
+sudo apt install libglm-dev cmake libxcb-dri3-0 libxcb-present0 libpciaccess0 \
+libpng-dev libxcb-keysyms1-dev libxcb-dri3-dev libx11-dev g++ gcc \
+libmirclient-dev libwayland-dev libxrandr-dev libxcb-randr0-dev libxcb-ewmh-dev \
+git python python3 bison libx11-xcb-dev liblz4-dev libzstd-dev python3-distutils \
+ocaml-core ninja-build pkg-config libxml2-dev wayland-protocols qtcreator \
+qtbase5-dev qt5-qmake qtbase5-dev-tools
+Run the vulkansdk script with the following arguments to restirct building to one CPU:
+
+./vulkansdk -j 1
+It is important that you include the “-j 1” as that will limit the build to just one CPU. You may be able to get away with two CPUs with 8GB of RAM, but on smaller devices, there is not enough memory to support using all CPUs. Also, on an SD card, the build will be painfully slow. As it is, it will likely run overnight and complete by morning. Booting from an external SSD is recommended for developent work.
+
+Building on the 2GB Pi will require a larger swap file. Edit /etc/dphys-swapfile, setting CONF_SWAPSIZE=2048, and reboot.
+
+You will find the working SDK in the /aarch64 folder.
+
+Arch linux distributions (latest)
+Update your system to be current on package updates:
+
+sudo pacman -Syu
+xz is needed to decompress the SDK, install it by running:
+
+sudo pacman -S xz
+If you want clone any of the repositories using the vulkansdk script, install the following prerequisite packages:
+
+sudo pacman -S base-devel glm cmake libpng wayland libpciaccess libx11 libxpresent \
+libxcb xcb-util libxrandr xcb-util-keysyms xcb-util-wm python git lz4 zstd python-distlib qt5-base \
+wayland-protocols ninja
+These packages are located in a mix between the core, extra, and community repositories. If any of those are disabled, you won't find the packages. More info on repositories is available here. The minimum required CMake version is CMake 3.17.2. The default version from Arch will be more than sufficient.
+
+Use the Vulkan SDK
+SDK Versioning
+The components in this SDK are built with a specific version of Khronos Vulkan API header, whose version is reflected in the SDK's version number. For example, SDK version v.w.xx.0 indicates the SDK uses the Vulkan header revision where:
+
+"v" is the Vulkan major version
+"w" is the Vulkan minor version
+"xx" is the Vulkan patch version (e.g., 24)
+The last number in the SDK version indicates the revision of an SDK for the given Vulkan header revision. It is used in case it is necessary to release multiple SDKs for the same version of Vulkan.
+
+For example, SDK version 1.1.70.0 indicates the SDK uses Vulkan header revision 1.1.70.
+
+Note: A more recent SDK version number does not indicate an application cannot be developed for earlier Vulkan versions. As well, an older SDK version can not be used to develop applications for a newer version of Vulkan. For example, the 1.1.130.0 SDK can be used to develop Vulkan 1.0 applications but cannot be used to develop applications for Vulkan 1.2. Furthermore, the presence of a 1.2.xx SDK does not necessarily indicate a system can actually run Vulkan 1.2. A Vulkan 1.2 driver is required for applications to use most Vulkan 1.2 functionality.
+
+Once you have installed a Vulkan driver on your system, there is a version for your Vulkan Loader, and a version for each physical device.
+
+Vulkan Instance Version. This is the version of your Vulkan Loader. If you run vulkaninfo, the Vulkan Instance Version is the first item reported.
+
+For each physical device, there is an apiVersion. The apiVersion is the version of your Vulkan driver. You can find the apiVersion for each physical device from your vulkaninfo output under the section labeled "Device Properties and Extensions".
+
+Download the SDK
+Download the latest Vulkan SDK from vulkan.LunarG.com.
+
+Install the SDK
+The Vulkan SDK installation process consists of extracting the tar file into a desired directory. The extracted file is a folder in the form 1.x.yy.z and can be placed anywhere on your system.
+
+Create a work directory. These instructions assume you want to install the SDK under a folder called vulkan, which can be placed anywhere on your system. In this case, it is your HOME directory.
+
+cd ~
+mkdir vulkan
+cd vulkan
+Generate the sha256sum and ensure it matches with the one listed on vulkan.lunarg.com located next to the SDK download link. Assuming you had downloaded the package to $HOME/Downloads:
+
+sha256sum $HOME/Downloads/vulkansdk-linux-x86_64-1.x.yy.z.tar.xz
+Extract the SDK package. Assuming you had downloaded the package to $HOME/Downloads:
+
+tar xf $HOME/Downloads/vulkansdk-linux-x86_64-1.x.yy.z.tar.xz
+Install runtime dependencies if they are not already installed:
+
+Ubuntu 22.04 or 24.04:
+
+sudo apt install libxcb-xinput0 libxcb-xinerama0 libxcb-cursor-dev
+Fedora:
+
+sudo dnf install xinput libXinerama xcb-util-cursor
+Arch Linux:
+
+sudo pacman -S libxcb libxinerama xcb-util-cursor
+Tar file contents
+The table below describes the filesystem unpacked from the SDK tar file, which appears under the top-level 1.x.yy.z directory created when the SDK was extracted. The top-level SDK directory contains a platform-specific folder; for 64-bit Intel CPU targets, it is named x86_64.
+
+Directory	Description
+x86_64/bin	Vulkan tools and commands
+x86_64/include	Header files useful for your Vulkan application. Includes Vulkan, shader tools, etc.
+x86_64/lib	Vulkan loader library and layer runtime libraries
+x86_64/share/vulkan/explicit_layer.d	.json manifest files for Vulkan validation layers
+x86_64/share/vulkan	Configurations for profiles and Vulkan registry information
+config	Sample layer settings file
+source	Source files
+System file locations
+If you have installed a Vulkan driver from a GPU vendor, you may wish to verify there is a .json manifest file for that driver installed. This will normally be located in either /etc/vulkan/icd.d/ or /usr/share/vulkan/icd.d (though other locations are possible). These directories will contain one or more Vulkan driver .json manifest files, which are not modified by the SDK installer. Refer to the Vulkan Loader guide in the "ICD Discovery on Linux" section for detailed information on ICD and layer library search order and paths for this platform.
+
+Set up the runtime environment
+Because you installed the Vulkan SDK in a location of your choice, you need to set environment variables to locate the Vulkan SDK components. These variables are identified in the table below. The VULKAN_SDK environment variable is set to the platform-specific directory in your SDK installation (e.g. ~/vulkan/1.x.yy.z/x86_64). The rest of the variables are set using paths relative to VULKAN_SDK:
+
+Environment Variable	File/Path to Include	Notes
+PATH	$VULKAN_SDK/bin	SDK executables
+LD_LIBRARY_PATH	$VULKAN_SDK/lib	Dynamically-loaded libraries (e.g., layers)
+VK_LAYER_PATH	$VULKAN_SDK/share/vulkan/explicit_layer.d	Only the SDK layer manifest .json files
+VK_ADD_LAYER_PATH	$VULKAN_SDK/share/vulkan/explicit_layer.d	The SDK and system layer manifest .json files
+The script sets the VK_ADD_LAYER_PATH environment variable to find the SDK layers first, followed by any layers installed on your system. (See the "System file locations" section above.) VK_LAYER_PATH overrides VK_ADD_LAYER_PATH completely, so the script unsets VK_LAYER_PATH if it is set before the script is executed. You can set VK_LAYER_PATH after running the setup script if you wish to specify a custom path that does not include the system layer paths.
+
+Use the source command to load that script into your current shell:
+
+source ~/vulkan/1.x.yy.z/setup-env.sh
+Of course, you would replace "xx" and "y" with the actual SDK version numbers.
+
+Alternatively you can setup your paths by setting these environment variables yourself:
+
+export VULKAN_SDK=~/vulkan/1.x.yy.z/x86_64
+export PATH=$VULKAN_SDK/bin:$PATH
+export LD_LIBRARY_PATH=$VULKAN_SDK/lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}
+export VK_ADD_LAYER_PATH=$VULKAN_SDK/share/vulkan/explicit_layer.d
+Environment variable persistence
+Note that sourcing the setup-env.sh script or running export commands only set the environment variables for your current shell session. They do not permanently "setup" any of this configuration for other shell sessions or future logins.
+
+If you desire these variables to be setup for you for future sessions, consult your shell or desktop graphical environment documentation for instructions on how to configure your system to define these environment variables for you.
+
+For example, on most Ubuntu desktop systems, adding a line to your .profile file to source the setup-env.sh file sets up the environment variables for you for both shells and programs started from the graphical environment in a desktop session. This should make the environment variables available to desktop tools such as cmake-gui, Qt Creator, or Android Studio.
+
+Copying SDK Files to System Directories
+The binaries included in the SDK are all built from public repositories. You can build each repository from source or it may just be easier to copy the files from the SDK into your system paths. There are also Ubuntu packages that makes installing these files even easier (see packages).
+
+If you want to install SDK files to your system directories, here are some examples to do so. (Note: some system paths could be different depending on what Linux distro you use)
+
+Vulkan Header Files
+sudo cp -r $VULKAN_SDK/include/vulkan/ /usr/local/include/
+Vulkan Loader Files
+sudo cp -P $VULKAN_SDK/lib/libvulkan.so* /usr/local/lib/
+Vulkan Layer Files
+sudo cp $VULKAN_SDK/lib/libVkLayer_*.so /usr/local/lib/
+sudo mkdir -p /usr/local/share/vulkan/explicit_layer.d
+sudo cp $VULKAN_SDK/share/vulkan/explicit_layer.d/VkLayer_*.json /usr/local/share/vulkan/explicit_layer.d
+You may need to run sudo ldconfig to refresh system loader search cache.
+
+Uninstalling the SDK
+To uninstall the SDK simply remove your local installation directory. e.g.
+
+rm -rf ~/vulkan/1.x.yy.z
+Verify the SDK Installation
+Verify the installation of the Vulkan SDK by running:
+
+Vulkan Installation Analyzer (VIA) with the command:
+~$ vkvia
+Vulkan Info with the command:
+`~$ vulkaninfo
+Vulkan Cube with the command:
+`~$ vkcube
+Vulkan SDK Layers
+Vulkan Layers aim at helping Vulkan developers building Vulkan applications by providing Vulkan API usage validation and Vulkan debugging tools.
+
+A Vulkan Layer can intercept all or any subset of Vulkan API entry points. Multiple layers can be chained together to cascade their functionality in the appearance of a single, larger layer.
+
+Vulkan SDK Layers list
+The Vulkan SDK includes the following layers:
+
+Layer Name	Description
+VK_LAYER_KHRONOS_validation	Vulkan API validation and error checking.
+VK_LAYER_LUNARG_gfxreconstruct	Capturing application Vulkan commands for GFXReconstruct.
+VK_LAYER_LUNARG_api_dump	Print API calls and their parameters and values.
+VK_LAYER_KHRONOS_profiles	Helps test across a wide range of hardware capabilities without physical access to every device.
+VK_LAYER_LUNARG_monitor	Outputs the frames-per-second of the target application in the applications title bar.
+VK_LAYER_LUNARG_screenshot	Outputs specified frames to an image file as they are presented.
+VK_LAYER_KHRONOS_synchronization2	Implements the VK_KHR_synchronization2 extension, for use on systems without a driver that implements it.
+VK_LAYER_KHRONOS_shader_object	Implements the VK_EXT_shader_objectVK_EXT_shader_object extension, for use on systems without a driver that implements it.
+VK_LAYER_LUNARG_crash_diagnostic	The Crash Diagnostic Layer (CDL) is a Vulkan layer to help track down and identify the cause of GPU hangs and crashes.
+Use Vulkan Layers
+Layers can be enabled in an application's code or by configuring a system's environment before an application is run. The methods of enabling layers that do not require modifying an application are outlined below.
+
+Vulkan Configurator
+Vulkan Configurator is a GUI application designed to make Vulkan Layers features and settings more accessible and intuitive to use, and to improve development iteration time.
+
+A Vulkan application may configure layers when creating a Vulkan Instance. This layers configuration may be overridden using Vulkan Configurator globally or for a selected list of Vulkan applications.
+
+Finally Vulkan Configurator allows using Vulkan Layers from user-defined directories.
+
+Main window	Layers window
+Main window	Layers window
+Note: This is the recommended approach to use or override Vulkan Layers.
+
+VK_INSTANCE_LAYERS environment variable
+The Vulkan Layers can be enabled by setting the VK_INSTANCE_LAYERS environment variable to a colon-separated list of layer or extension names, as found in the Vulkan SDK Layers list or within the manifest files.
+
+$ export VK_INSTANCE_LAYERS=VK_LAYER_KHRONOS_validation:VK_LAYER_LUNARG_gfxreconstruct
+Debug Vulkan applications
+Vulkan API Validation with Khronos Validation layer
+By design, minimal error checking is done inside a Vulkan driver to avoid API overhead. Applications have full control and responsibility for correct operation. Any errors in how Vulkan is used can result in a crash. The Khronos Validation layer VK_LAYER_KHRONOS_validation can be enabled to assist development by enabling developers to verify their applications correct use of the Vulkan API.
+
+Vulkan API Capture and Replay with GFXReconstruct
+The GFXReconstruct project provides tools for the capture and replay of Vulkan API calls. The VK_LAYER_LUNARG_gfxreconstruct layer allows recording to a file the graphics commands executed by a Vulkan application that may later be replayed with gfxrecon-replay to reconstruct the graphics-specific behavior of the captured application.
+
+Helper build script
+The root SDK directory contains a script named vulkansdk to aid with building binaries. There may be some rare instances when the pre-built binaries provided in the Linux SDK will not work with your system. This script will build all the binaries included in the SDK. Be sure you have the necessary requirements (see Download and Install Packages for building binaries) before running this script.
+
+After successfully running vulkansdk the files will be located under the "x86_64" directory. If you ran source setup-env.sh to set up your environment variables the binaries will be in your path (see Set up the Runtime Environment).
+
+The vulkansdk script helps with building the following repositories: glslang, Vulkan Loader, Vulkan validation layer, Vulkan tools, shaderc, *spirv-tools, and spirv-cross.
+
+Each option will build a corresponding repository. Depending on the repository multiple tools will be built. Here is a list of tools corresponding to the repository that will be built:
+
+Any or all of these script's options can be used separated by spaces. Run ./vulkansdk help for available options. Running ./vulkansdk with no options will build everything.
+
+Repository	vulkansdk script option	Resulting Build Components
+Khronos' Vulkan-Loader	vulkan-loader	libvulkan.so
+Khronos' Vulkan-ValidationLayer	vulkan-validationlayer	Khronos Vulkan validation layer
+Khronos' Vulkan-ExtensionLayer	vulkan-extensionlayer	Khronos Vulkan extension layer
+Khronos' Vulkan-Tools	vulkan-tools	vulkaninfo, vkcube, vkcubepp
+LunarG's VulkanTools	lunarg-tools	layers, VIA, Vulkan Configurator
+LunarG's gfxreconsruct	gfxreconstruct	GFXReconstruct capture/replay/tools
+Google's shaderc	shaderc	glslc and shaderc libraries
+Khronos' glslang	glslang	glslangValidator and glslang libraries
+Khronos' SPIRV-Tools	spirv-tools	SPIR-V tools binaries and libraries
+Khronos' SPIRV-Cross	spirv-cross	SPIR-V Cross binary and libraries
+Khronos' SPIRV-Reflect	spirv-reflect	SPIR-V Reflect binary and source files
+Khronos' Vulkan-Profiles	vulkan-profiles	Vulkan-Profiles binary and source files
+zeux/volk	volk	volk binary and source files
+GPUOpen-LibrariesAndSDKs	vma	Vulkan Memory Allocator binary and source files
+SaschaWillems/VulkanCapsViewer	vcv	Vulkan Caps Viewer binary and source files
+open-source-parsers/jsoncpp	jsoncpp	jsoncpp binary and source files
+Khronos' Vulkan-Utility-Libraries	vul	Vulkan-Utility-Libraries binary and source files
+LunarG's CrashDiagnosticLayer	cdl	CrashDiagnosticLayer binary and source files
+slang-lang slang	slang	slang binary and source files
+All Repositories	all	Builds All Repositories
+Next Steps
+This guide provided an introduction to the main components and tools in the Vulkan SDK. Refer to the Vulkan SDK Download Site for the most up-to-date SDK information, including the complete set of SDK documentation.
