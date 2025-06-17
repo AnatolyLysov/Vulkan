@@ -28,3 +28,5 @@ aikidance@aikidance:~/downloads$ sha256sum ./vulkansdk-linux-x86_64-1.4.313.0.ta
 tar xf ./vulkansdk-linux-x86_64-1.4.313.0.tar.xz
 
 sudo apt install libxcb-xinput0 libxcb-xinerama0 libxcb-cursor-dev
+
+export VULKAN_SDK= ~/downloads/vulkansdk-linux-x86_64-1.4.313.0.tar.xz
