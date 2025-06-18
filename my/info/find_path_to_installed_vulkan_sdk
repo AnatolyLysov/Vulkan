@@ -1,0 +1,65 @@
+To find the path to the installed Vulkan SDK, you can follow these steps based on your operating system:
+
+### For Windows
+
+1. **Using Environment Variables:**
+   If you have installed the Vulkan SDK, it usually sets an environment variable called `VULKAN_SDK`. You can check this in Command Prompt:
+
+   - Open Command Prompt and run:
+     ```cmd
+     echo %VULKAN_SDK%
+     ```
+
+   This command will print the path to the Vulkan SDK if it is set.
+
+2. **Check Installation Directory:**
+   The default installation path for the Vulkan SDK on Windows is typically:
+   ```
+   C:\VulkanSDK\<version>\
+   ```
+   You can navigate to `C:\VulkanSDK\` in File Explorer to see the available versions.
+
+3. **Using the Vulkan SDK Installer:**
+   If you still have the Vulkan SDK installer, you can run it again, and it will show you the installation path during the setup process.
+
+### For macOS
+
+1. **Using Terminal:**
+   Open a terminal and check if the `VULKAN_SDK` environment variable is set:
+
+   ```bash
+   echo $VULKAN_SDK
+   ```
+
+   If it is set, this command will return the path to the Vulkan SDK.
+
+2. **Default Installation Path:**
+   If you installed the Vulkan SDK via a package manager like Homebrew, the path is usually:
+   ```
+   /usr/local/vulkan
+   ```
+
+### For Linux
+
+1. **Using Terminal:**
+   Open a terminal and check the `VULKAN_SDK` environment variable:
+
+   ```bash
+   echo $VULKAN_SDK
+   ```
+
+   If this variable is set, it will display the path to the Vulkan SDK.
+
+2. **Default Installation Path:**
+   If you installed the Vulkan SDK via a package manager or from the official sources, it is often located in:
+   ```
+   /usr/include/vulkan
+   ```
+   or
+   ```
+   /usr/local/VulkanSDK/<version>/
+   ```
+
+### Summary
+
+If the `VULKAN_SDK` environment variable is not set, you may need to check the installation directories manually or refer to the documentation of the Vulkan SDK you installed. If you installed it via a package manager, you can also consult the package manager's documentation for the installation path.

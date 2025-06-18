@@ -1,12 +1,12 @@
 https://www.geeksforgeeks.org/linux-unix/how-to-download-file-on-linux-terminal/
-
+-----------------
 sudo apt install wget
-
+-------------------
 https://sdk.lunarg.com/sdk/download/1.4.313.0/linux/vulkansdk-linux-x86_64-1.4.313.0.tar.xz
-
+----------------
 
 download Vulkan SDK from https://vulkan.lunarg.com/sdk/home 
-
+---------------
 
 how to download by terminal
 https://www.geeksforgeeks.org/linux-unix/how-to-download-file-on-linux-terminal/
@@ -30,3 +30,15 @@ tar xf ./vulkansdk-linux-x86_64-1.4.313.0.tar.xz
 sudo apt install libxcb-xinput0 libxcb-xinerama0 libxcb-cursor-dev
 
 export VULKAN_SDK= ~/downloads/vulkansdk-linux-x86_64-1.4.313.0.tar.xz
+----------------
+lsb_release -a
+No LSB modules are available.
+Distributor ID: Ubuntu
+Description:    Ubuntu 24.04.2 LTS
+Release:        24.04
+Codename:       noble
+----------------
+/home/aikidance/Vulkan-1/my/books
+
+/home/aikidance/Vulkan/my/books
+-------------------------------

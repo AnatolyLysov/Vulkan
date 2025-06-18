@@ -1,0 +1,71 @@
+To export the `VULKAN_SDK` environment variable in your project directory, you typically want to set it in your shell or environment configuration file. Here's how you can do it for different operating systems:
+
+### For Windows
+
+1. **Using Command Prompt:**
+   Open Command Prompt and run the following command (replace `C:\VulkanSDK\1.2.162.0` with your actual Vulkan SDK path):
+
+   ```cmd
+   set VULKAN_SDK=C:\VulkanSDK\1.2.162.0
+   ```
+
+   This will set the variable for the current session. To make it permanent, you can set it in the system environment variables.
+
+2. **Using PowerShell:**
+   Open PowerShell and run:
+
+   ```powershell
+   $env:VULKAN_SDK="C:\VulkanSDK\1.2.162.0"
+   ```
+
+3. **Permanent Environment Variable:**
+   - Right-click on "This PC" or "Computer" and select "Properties."
+   - Click on "Advanced system settings."
+   - Click on "Environment Variables."
+   - Under "System variables," click "New" and enter `VULKAN_SDK` as the variable name and your Vulkan SDK path as the value.
+
+### For macOS/Linux
+
+1. **Bash Shell:**
+   Open a terminal and run the following command (replace `/path/to/vulkan/sdk` with your actual Vulkan SDK path):
+
+   ```bash
+   export VULKAN_SDK=/path/to/vulkan/sdk
+   ```
+
+   To make this change permanent, add the export command to your `~/.bashrc` or `~/.bash_profile` file:
+
+   ```bash
+   echo 'export VULKAN_SDK=/path/to/vulkan/sdk' >> ~/.bashrc
+   ```
+
+   Then, run `source ~/.bashrc` to apply the changes.
+
+2. **Zsh Shell:**
+   If you are using Zsh, you can add the same line to your `~/.zshrc` file:
+
+   ```bash
+   echo 'export VULKAN_SDK=/path/to/vulkan/sdk' >> ~/.zshrc
+   ```
+
+   Then, run `source ~/.zshrc` to apply the changes.
+
+### Project-Specific Configuration
+
+If you want to set `VULKAN_SDK` specifically for a project, you can also create a script (e.g., `setenv.sh` for Linux/macOS or `setenv.bat` for Windows) in your project directory:
+
+- **For Linux/macOS (`setenv.sh`):**
+
+  ```bash
+  #!/bin/bash
+  export VULKAN_SDK=/path/to/vulkan/sdk
+  ```
+
+- **For Windows (`setenv.bat`):**
+
+  ```bat
+  @echo off
+  set VULKAN_SDK=C:\VulkanSDK\1.2.162.0
+  ```
+
+You can then run this script to set the environment variable before building or running your project.
