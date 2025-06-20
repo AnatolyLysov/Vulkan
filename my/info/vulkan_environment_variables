@@ -1,0 +1,79 @@
+Setting up Vulkan environment variables can vary depending on your operating system and the specific Vulkan SDK you are using. Below are general steps for setting up Vulkan environment variables on Windows, macOS, and Linux.
+
+### Windows
+
+1. **Download and Install Vulkan SDK**:
+   - Download the Vulkan SDK from the [LunarG website](https://vulkan.lunarg.com/).
+   - Install the SDK by following the installation prompts.
+
+2. **Set Environment Variables**:
+   - Open the Start Menu and search for "Environment Variables."
+   - Click on "Edit the system environment variables."
+   - In the System Properties window, click on the "Environment Variables" button.
+
+3. **Add SDK Path**:
+   - In the Environment Variables window, under the "System variables" section, click "New" to add a new variable.
+     - **Variable Name**: `VULKAN_SDK`
+     - **Variable Value**: The path to the Vulkan SDK installation, typically something like `C:\VulkanSDK\<version>\`.
+
+4. **Update the PATH**:
+   - Find the `Path` variable in the "System variables" section and select it, then click "Edit."
+   - Click "New" and add the following paths:
+     - `%VULKAN_SDK%\Bin`
+     - `%VULKAN_SDK%\Lib`
+     - `%VULKAN_SDK%\Include`
+
+5. **Verify Installation**:
+   - Open a command prompt and type `vulkaninfo`. If everything is set up correctly, you should see Vulkan information printed in the console.
+
+### macOS
+
+1. **Download and Install Vulkan SDK**:
+   - Download the Vulkan SDK from the [LunarG website](https://vulkan.lunarg.com/).
+   - Install the SDK by following the installation instructions.
+
+2. **Set Environment Variables**:
+   - Open a terminal window.
+   - You can add the following lines to your shell configuration file (e.g., `.bash_profile`, `.zshrc`, etc.):
+     ```bash
+     export VULKAN_SDK=/path/to/vulkan/sdk/macOS
+     export PATH=$VULKAN_SDK/bin:$PATH
+     export DYLD_LIBRARY_PATH=$VULKAN_SDK/lib:$DYLD_LIBRARY_PATH
+     export VK_ICD_FILENAMES=$VULKAN_SDK/etc/vulkan/icd.d
+     export VK_LAYER_PATH=$VULKAN_SDK/etc/vulkan/explicit_layer.d
+     ```
+   - Replace `/path/to/vulkan/sdk/macOS` with the actual path where the Vulkan SDK is installed.
+
+3. **Apply Changes**:
+   - Run `source ~/.bash_profile` or `source ~/.zshrc` to apply the changes.
+
+4. **Verify Installation**:
+   - In the terminal, type `vulkaninfo` to check if Vulkan is set up correctly.
+
+### Linux
+
+1. **Download and Install Vulkan SDK**:
+   - Download the Vulkan SDK from the [LunarG website](https://vulkan.lunarg.com/).
+   - Extract the SDK to a suitable location.
+
+2. **Set Environment Variables**:
+   - Open a terminal window.
+   - You can add the following lines to your shell configuration file (e.g., `.bashrc`, `.bash_profile`, `.zshrc`, etc.):
+     ```bash
+     export VULKAN_SDK=/path/to/vulkan/sdk/linux
+     export PATH=$VULKAN_SDK/bin:$PATH
+     export LD_LIBRARY_PATH=$VULKAN_SDK/lib:$LD_LIBRARY_PATH
+     export VK_ICD_FILENAMES=$VULKAN_SDK/etc/vulkan/icd.d
+     export VK_LAYER_PATH=$VULKAN_SDK/etc/vulkan/explicit_layer.d
+     ```
+   - Replace `/path/to/vulkan/sdk/linux` with the actual path where the Vulkan SDK is installed.
+
+3. **Apply Changes**:
+   - Run `source ~/.bashrc` or `source ~/.zshrc` to apply the changes.
+
+4. **Verify Installation**:
+   - In the terminal, type `vulkaninfo` to check if Vulkan is set up correctly.
+
+### Conclusion
+
+After setting up the environment variables, you should be able to compile and run Vulkan applications. If you encounter any issues, make sure that the paths are set correctly and that your graphics drivers support Vulkan.
