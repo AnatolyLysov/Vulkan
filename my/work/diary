@@ -126,3 +126,21 @@ the Vulkan installation and supported devices.
 
 By following these steps, you should be able to resolve the issue related to the Vulkan driver or GPU compatibility. If the problem persists, 
 consider reaching out to the support forums for your GPU manufacturer or the Vulkan SDK for further assistance.
+
+//////////////////////////////
+sudo apt install vulkan-tools
+sudo apt install libvulkan-dev
+
+sudo apt install vulkan-validationlayers-dev
+Package vulkan-validationlayers-dev is not available, but is referred to by another package.
+This may mean that the package is missing, has been obsoleted, or
+is only available from another source
+However the following packages replace it:
+  vulkan-utility-libraries-dev
+
+
+sudo apt install  vulkan-utility-libraries-dev
+
+vkcube
+
+появилось окно в котором вращается кубик
