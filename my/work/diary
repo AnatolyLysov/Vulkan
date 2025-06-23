@@ -151,3 +151,30 @@ sudo apt install libglm-dev
 
 vulkaninfo
 
+/////////////////////////////////////////////////
+
+https://github.com/KhronosGroup/Vulkan-ValidationLayers
+
+
+No, glc is not included in the standard Ubuntu Vulkan SDK. The Vulkan SDK focuses on providing tools for Vulkan development, 
+including the loader, headers, validation layers, and debugging tools. glc, which stands for "Graphics Layout Compiler",
+ is a separate project and not part of the core Vulkan SDK distribution. 
+While the Vulkan SDK includes tools for shader compilation (like SPIR-V tools) and online documentation, 
+it does not include glc specifically. To use glc, you would need to obtain it separately and integrate it into your development environment. 
+
+
+it is better
+https://github.com/AnatolyLysov/shaderc
+https://github.com/AnatolyLysov/shaderc.git
+
+prebuild binaries
+
+https://github.com/AnatolyLysov/shaderc#downloads
+
+
+
+
+
+
+
+
