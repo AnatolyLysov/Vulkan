@@ -171,9 +171,30 @@ prebuild binaries
 
 https://github.com/AnatolyLysov/shaderc#downloads
 
+------------------------------------
+move file from windows to Ubuntu
 
+mv /mnt/<windows_drive_letter>/<path>/<filename> 
+mv /mnt/c/Users/username/Documents/file.txt
+mv /mnt/c/Users/username/Documents/file.txt /home/user/Desktop/
+mv /mnt/c/Users/username/Documents/file.txt /home/user/Desktop/file.txt
+------------------------------------
+move file from Ubuntu to windows
+mv /home/user/Desktop/file.txt /mnt/
+------------------------------------
+move file from windows to Ubuntu
 
+mv /mnt/c/Users/aikidance/Documents/install.tgz /home/aikidance/Vulkan-1/my/downloads/install.tgz
 
+ikidance@aikidance:~/Vulkan-1$ mv /mnt/c/Users/aikidance/Documents/install.tgz /home/aikidance/Vulkan-1/my/downloads/install.tgz
+-------------------------------------------------------
+.gitignore
+
+aikidance/aikidance/downloads/vulkansdk-linux-x86_64-1.4.313.0.tar.xz
+
+aikidance@aikidance:~/Vulkan-1/my/Downloads/install.tgz
+
+------------------------------------------
 
 
 
