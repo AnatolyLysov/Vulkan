@@ -229,3 +229,4 @@ To check if Vulkan is installed correctly, you can run:
 vulkaninfo
 ```
 -------------------------------------------
+git rm -r --cached /home/aikidance/Vulkan-1/my/downloads
