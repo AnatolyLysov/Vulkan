@@ -199,7 +199,33 @@ aikidance@aikidance:~/Vulkan-1/my/downloads$ git reset install.tgz
 Unstaged changes after reset:
 M       install.tgz
 --------------------------------------------------------
+//////////////////////////////////////////////////////////////
+tar xf ./install.tgz
+aikidance@aikidance:~/Vulkan-1/my/downloads$ tar xf ./install.tgz
+--------------------------------------
+nano ~/.bashrc
+
+export PATH=$VULKAN_SDK/bin:$PATH
+export LD_LIBRARY_PATH=$VULKAN_SDK/lib:$LD_LIBRARY_PATH
+export VK_ICD_FILENAMES=$VULKAN_SDK/etc/vulkan/icd.d/nvidia_icd.json  # Adjust based on your GPU
+export VK_LAYER_PATH=$VULKAN_SDK/etc/vulkan/explicit_layer.d
 
 
+export VULKAN_SDK=/home/aikidance/Vulkan-1/my/downloads/install
+export PATH=$VULKAN_SDK/bin:$PATH
+export LD_LIBRARY_PATH=$VULKAN_SDK/lib:$LD_LIBRARY_PATH
+export VK_ICD_FILENAMES=$VULKAN_SDK/etc/vulkan/icd.d/nvidia_icd.json  # Adjust based on your GPU
+export VK_LAYER_PATH=$VULKAN_SDK/etc/vulkan/explicit_layer.d
 
+source ~/.bashrc
 
+echo $PATH
+echo $LD_LIBRARY_PATH
+-------------------------------------------
+
+To check if Vulkan is installed correctly, you can run:
+
+```bash
+vulkaninfo
+```
+-------------------------------------------

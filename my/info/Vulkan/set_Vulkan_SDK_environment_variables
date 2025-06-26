@@ -1,0 +1,75 @@
+To add the Vulkan SDK's `bin`, `lib`, and `include` directories to your system's PATH environment variable in Ubuntu, you can follow these steps:
+
+### Step 1: Locate the Vulkan SDK Installation
+
+First, you need to know where the Vulkan SDK is installed. The default installation path is usually something like:
+
+```
+/home/<username>/VulkanSDK/1.x.x.x/ (replace 1.x.x.x with the actual version number)
+```
+
+Make sure to replace `<username>` with your actual username.
+
+### Step 2: Edit Your Shell Configuration File
+
+You can add the Vulkan SDK paths to your environment variables by editing your shell configuration file. This file can vary based on the shell you are using. For example:
+
+- For **bash**, edit `~/.bashrc`.
+- For **zsh**, edit `~/.zshrc`.
+
+Here, I'll show you how to do it for **bash**.
+
+1. Open a terminal.
+2. Use a text editor to open the `~/.bashrc` file. For example, using `nano`:
+
+   ```bash
+   nano ~/.bashrc
+   ```
+
+### Step 3: Add the Vulkan SDK Paths
+
+Scroll to the bottom of the file and add the following lines, replacing the version number with the actual version installed on your system:
+
+```bash
+# Vulkan SDK
+export VULKAN_SDK=/home/<username>/VulkanSDK/1.x.x.x/x86_64
+export PATH=$VULKAN_SDK/bin:$PATH
+export LD_LIBRARY_PATH=$VULKAN_SDK/lib:$LD_LIBRARY_PATH
+export VK_ICD_FILENAMES=$VULKAN_SDK/etc/vulkan/icd.d/nvidia_icd.json  # Adjust based on your GPU
+export VK_LAYER_PATH=$VULKAN_SDK/etc/vulkan/explicit_layer.d
+```
+
+### Step 4: Save and Exit
+
+- If you are using `nano`, save the file by pressing `CTRL + O`, then press `Enter`. Exit by pressing `CTRL + X`.
+
+### Step 5: Apply the Changes
+
+To apply the changes made to the `~/.bashrc` file, run the following command:
+
+```bash
+source ~/.bashrc
+```
+
+### Step 6: Verify the Changes
+
+To verify that the paths have been added successfully, you can run:
+
+```bash
+echo $PATH
+echo $LD_LIBRARY_PATH
+```
+
+You should see the Vulkan SDK paths included in the output.
+
+### Step 7: (Optional) Check Vulkan Installation
+
+To check if Vulkan is installed correctly, you can run:
+
+```bash
+vulkaninfo
+```
+
+This command should provide detailed information about your Vulkan installation and supported devices. If you encounter an error, ensure that the Vulkan SDK is correctly installed and that your graphics drivers support Vulkan.
+
+That's it! You have now added the Vulkan SDK's `bin`, `lib`, and `include` directories to your system's PATH environment variable in Ubuntu.
