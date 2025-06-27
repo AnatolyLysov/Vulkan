@@ -1,0 +1,131 @@
+Creating a simple Vulkan application in C to display a triangle involves several steps, including initializing Vulkan, creating a window, and setting up the rendering pipeline. Below is a minimal example that demonstrates these steps. This example uses the GLFW library for window management and assumes you have the Vulkan SDK installed.
+
+### Prerequisites
+
+1. **Vulkan SDK**: Ensure you have the Vulkan SDK installed. You can download it from the [LunarG website](https://vulkan.lunarg.com/).
+2. **GLFW**: This example uses GLFW for window management. You can download it from [GLFW's website](https://www.glfw.org/).
+3. **CMake**: It is recommended to use CMake for building the project.
+
+### CMakeLists.txt
+
+Create a file named `CMakeLists.txt` in your project folder:
+
+```cmake
+cmake_minimum_required(VERSION 3.10)
+project(SimpleVulkanGame C)
+
+set(CMAKE_C_STANDARD 11)
+
+find_package(Vulkan REQUIRED)
+find_package(glfw3 REQUIRED)
+
+add_executable(SimpleVulkanGame main.c)
+
+target_include_directories(SimpleVulkanGame PRIVATE ${Vulkan_INCLUDE_DIRS})
+target_link_libraries(SimpleVulkanGame ${Vulkan_LIBRARIES} glfw)
+```
+
+### main.c
+
+Create a file named `main.c` with the following code:
+
+```c
+#define GLFW_INCLUDE_VULKAN
+#include <GLFW/glfw3.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <assert.h>
+
+const int WIDTH = 800;
+const int HEIGHT = 600;
+
+typedef struct {
+    GLFWwindow* window;
+    VkInstance instance;
+} VulkanApp;
+
+void initWindow(VulkanApp* app) {
+    glfwInit();
+    glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
+    app->window = glfwCreateWindow(WIDTH, HEIGHT, "Simple Vulkan Game", NULL, NULL);
+}
+
+void createInstance(VulkanApp* app) {
+    VkInstanceCreateInfo createInfo = {};
+    createInfo.sType = VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO;
+
+    if (vkCreateInstance(&createInfo, NULL, &app->instance) != VK_SUCCESS) {
+        fprintf(stderr, "Failed to create Vulkan instance!\n");
+        exit(EXIT_FAILURE);
+    }
+}
+
+void mainLoop(VulkanApp* app) {
+    while (!glfwWindowShouldClose(app->window)) {
+        glfwPollEvents();
+    }
+}
+
+void cleanup(VulkanApp* app) {
+    vkDestroyInstance(app->instance, NULL);
+    glfwDestroyWindow(app->window);
+    glfwTerminate();
+}
+
+int main() {
+    VulkanApp app;
+
+    initWindow(&app);
+    createInstance(&app);
+    mainLoop(&app);
+    cleanup(&app);
+
+    return 0;
+}
+```
+
+### Build and Run
+
+1. **Create a build directory**:
+
+```bash
+mkdir build
+cd build
+```
+
+2. **Run CMake**:
+
+```bash
+cmake ..
+```
+
+3. **Build the project**:
+
+```bash
+cmake --build .
+```
+
+4. **Run the executable**:
+
+```bash
+./SimpleVulkanGame
+```
+
+### Explanation
+
+- **GLFW**: This library is used for creating a window and handling input.
+- **Vulkan**: The Vulkan API is initialized in the `createInstance` function.
+- **Main Loop**: The application runs a simple loop that keeps the window open until it is closed.
+
+### Next Steps
+
+This code sets up a basic Vulkan application. To create a more complex game, you'll need to:
+
+1. Set up a graphics pipeline.
+2. Load and manage shaders.
+3. Handle vertex buffers and draw calls.
+4. Implement input handling.
+5. Add game logic.
+
+This example serves as a starting point, and you can expand upon it by adding more Vulkan features as you learn.
