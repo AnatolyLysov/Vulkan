@@ -230,3 +230,21 @@ vulkaninfo
 ```
 -------------------------------------------
 git rm -r --cached /home/aikidance/Vulkan-1/my/downloads
+
+---------------------------------------------
+gcc -o HelloWorld HelloWorld.c -I/usr/include/vulkan -lvulkan
+
+gcc -o HelloWorld HelloWorld.c -I/path/to/include -L/path/to/library
+#include <vulkan/vulkan.h>
+#include <stdio.h>  
+gcc -o HelloWorld HelloWorld.c -I/home/aikidance/Vulkan-1/my/downloads/install/include -L/home/aikidance/Vulkan-1/my/downloads/install/lib
+
+#include <vulkan/vulkan.h>
+#include <stdio.h>
+
+aikidance@aikidance:~/Vulkan-1/VulkanTest$ gcc -o HelloWorld HelloWorld.c -I/home/aikidance/Vulkan-1/my/downloads/install/include -L/home/aikidance/Vulkan-1/my/downloads/install/lib -lvulkan
+
+./HelloWorld
+
+Vulkan instance created successfully!
+------------------------------------------

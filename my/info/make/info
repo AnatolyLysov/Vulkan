@@ -1,0 +1,38 @@
+#compile: HelloWorld1.c
+	# Compile the Vulkan program
+	# Adjust the paths to your Vulkan SDK installation
+	# and the include and library directories as needed.
+	# The -I flag specifies the include directory for Vulkan headers
+	# The -L flag specifies the library directory for Vulkan libraries
+	# The -lvulkan flag links against the Vulkan library
+	# The output executable will be named HelloWorld1
+	# The -o flag specifies the output file name
+	# The -I flag is used to include the Vulkan headers
+	# The -L flag is used to link against the Vulkan library
+#HelloWorld1: HelloWorld1.c
+	# Compile the Vulkan program
+	# Adjust the paths to your Vulkan SDK installation
+	# and the include and library directories as needed.
+	# The -I flag specifies the include directory for Vulkan headers
+	# The -L flag specifies the library directory for Vulkan libraries
+	# The -lvulkan flag links against the Vulkan library
+	# The output executable will be named HelloWorld1
+	# The -o flag specifies the output file name
+	# The -I flag is used to include the Vulkan headers
+	# The -L flag is used to link against the Vulkan library
+	# The -lvulkan flag links against the Vulkan library
+	# The output executable will be named HelloWorld1
+	# The -o flag specifies the output file name
+	# The -I flag is used to include the Vulkan headers
+	# The -L flag is used to link against the Vulkan library
+	# The -lvulkan flag links against the Vulkan library
+	# The output executable will be named HelloWorld1
+	# The -o flag specifies the output file name
+	# The -I flag is used to include the Vulkan headers
+	# The -L flag is used to link against the Vulkan library
+	# The -lvulkan flag links against the Vulkan library
+	# The output executable will be named HelloWorld1
+#	gcc -o HelloWorld1 HelloWorld1.c -I/home/aikidance/Vulkan-1/my/downloads/install/include -L/home/aikidance/Vulkan-1/my/downloads/install/lib -lvulkan
+#run:
+#	./HelloWorld1
+
