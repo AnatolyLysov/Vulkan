@@ -1,0 +1,213 @@
+Below is an overview of some basic Bash commands you can use in Ubuntu. Bash is the default shell in Ubuntu, and these commands are essential for navigating directories, managing files, and performing everyday tasks.
+
+---
+
+## 1. Navigation Commands
+
+- **pwd**  
+  Displays the current working directory.
+  ```bash
+  pwd
+  ```
+  _Example Output:_  
+  `/home/username`
+
+- **ls**  
+  Lists files and directories.
+  ```bash
+  ls
+  ls -l    # Long listing format with details
+  ls -a    # Shows hidden files as well
+  ```
+
+- **cd**  
+  Changes the current directory.
+  ```bash
+  cd /path/to/directory
+  cd ~          # Go to the home directory
+  cd -          # Switch to the previous directory
+  ```
+
+---
+
+## 2. File and Directory Management
+
+- **mkdir**  
+  Creates a new directory.
+  ```bash
+  mkdir new_directory
+  ```
+
+- **rmdir**  
+  Removes an empty directory.
+  ```bash
+  rmdir empty_directory
+  ```
+
+- **touch**  
+  Creates a new file or updates the timestamp of an existing file.
+  ```bash
+  touch newfile.txt
+  ```
+
+- **cp**  
+  Copies files or directories.
+  ```bash
+  cp source_file destination_file
+  cp -r source_directory/ destination_directory/
+  ```
+
+- **mv**  
+  Moves or renames files or directories.
+  ```bash
+  mv oldname.txt newname.txt
+  mv file.txt /path/to/directory/
+  ```
+
+- **rm**  
+  Removes files or directories.
+  ```bash
+  rm file.txt
+  rm -r directory_name    # Recursively remove a directory and its contents
+  rm -f file.txt          # Force removal without prompting
+  ```
+
+---
+
+## 3. Viewing and Editing Files
+
+- **cat**  
+  Displays the content of a file.
+  ```bash
+  cat file.txt
+  ```
+
+- **less**  
+  Views file contents page by page. Press `q` to quit.
+  ```bash
+  less file.txt
+  ```
+
+- **head** and **tail**  
+  Show the beginning or end of a file (default is 10 lines).
+  ```bash
+  head file.txt
+  tail file.txt
+  tail -n 20 file.txt   # Show the last 20 lines
+  ```
+
+- **nano** or **vim**  
+  Text editors for quick edits.
+  ```bash
+  nano file.txt
+  vim file.txt
+  ```
+
+---
+
+## 4. Searching and Filtering
+
+- **grep**  
+  Searches for patterns within files.
+  ```bash
+  grep "search_term" file.txt
+  grep -r "search_term" directory/    # Recursively search in a directory
+  ```
+
+- **find**  
+  Searches for files and directories matching given criteria.
+  ```bash
+  find /path/to/search -name "filename"
+  find . -type f -name "*.txt"         # Find all text files in the current directory
+  ```
+
+---
+
+## 5. Working with File Permissions
+
+- **chmod**  
+  Changes file or directory permissions.
+  ```bash
+  chmod 755 script.sh    # Sets read, write, execute for owner; read and execute for group/others
+  chmod u+x script.sh    # Adds execute permission for the file’s owner
+  ```
+
+- **chown**  
+  Changes file or directory ownership.
+  ```bash
+  chown user:group file.txt
+  chown -R user:group directory/   # Recursively change ownership
+  ```
+
+---
+
+## 6. Process and System Management
+
+- **ps**  
+  Displays running processes.
+  ```bash
+  ps
+  ps aux          # Detailed information about all processes
+  ```
+
+- **top**  
+  Provides a real-time view of system processes and resource usage.
+  ```bash
+  top
+  ```
+
+- **kill**  
+  Terminates processes using their PID (Process ID).
+  ```bash
+  kill PID       # Replace PID with the actual process ID
+  kill -9 PID    # Force kill a process
+  ```
+
+- **clear**  
+  Clears the terminal screen.
+  ```bash
+  clear
+  ```
+
+---
+
+## 7. Getting Help
+
+- **man**  
+  Displays the manual page for commands.
+  ```bash
+  man ls
+  ```
+  
+- **--help**  
+  Many commands provide a help option.
+  ```bash
+  ls --help
+  ```
+
+---
+
+## 8. Other Useful Commands
+
+- **echo**  
+  Prints text to the terminal.
+  ```bash
+  echo "Hello, Ubuntu!"
+  ```
+
+- **history**  
+  Shows the list of previously used commands.
+  ```bash
+  history
+  ```
+
+- **alias**  
+  Creates shortcuts for commands.
+  ```bash
+  alias ll='ls -alF'
+  ```
+  You can add such aliases to your ~/.bashrc file for persistence.
+
+---
+
+By familiarizing yourself with these basic commands, you'll be well-equipped to navigate and manage your file system, search through files, manage processes, and more—all from the Ubuntu command line. Experiment with them, and refer to the `man` pages for more detailed information on each command. Happy learning!
