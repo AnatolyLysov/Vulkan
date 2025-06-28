@@ -1,0 +1,69 @@
+To determine if GLFW (Graphics Library Framework) is installed on your system, you can follow these steps based on your operating system:
+
+### On Windows
+
+1. **Check Installed Programs:**
+   - Go to `Control Panel` > `Programs` > `Programs and Features`.
+   - Look for GLFW in the list of installed software.
+
+2. **Check via Command Line:**
+   - Open Command Prompt and run:
+     ```cmd
+     where glfw3.dll
+     ```
+   - If the command returns a path, GLFW is installed.
+
+3. **Check in Your Development Environment:**
+   - If you are using an IDE (like Visual Studio), check your project settings to see if GLFW is included in your libraries.
+
+### On macOS
+
+1. **Using Homebrew:**
+   - If you installed GLFW via Homebrew, you can check if it’s installed by running:
+     ```bash
+     brew list glfw
+     ```
+   - If it’s installed, it will show the version.
+
+2. **Check via Terminal:**
+   - You can also check for the library file:
+     ```bash
+     ls /usr/local/lib/libglfw.dylib
+     ```
+   - If the file exists, GLFW is installed.
+
+### On Linux
+
+1. **Using Package Manager:**
+   - For Ubuntu or Debian-based systems, check with:
+     ```bash
+     dpkg -l | grep glfw
+     ```
+   - For Fedora or Red Hat-based systems, use:
+     ```bash
+     rpm -qa | grep glfw
+     ```
+
+2. **Check via Terminal:**
+   - You can also check for the library file:
+     ```bash
+     ls /usr/lib/libglfw.so
+     ```
+   - If the file exists, GLFW is installed.
+
+### General Method (Cross-Platform)
+
+1. **Check in Your Project:**
+   - If you have a project using GLFW, look for include statements like:
+     ```c
+     #include <GLFW/glfw3.h>
+     ```
+   - If the compiler can find this header file and link against GLFW, it is installed correctly.
+
+2. **Try Compiling a Simple Program:**
+   - Write a simple GLFW program and try to compile it. If it compiles without errors related to GLFW, it is installed.
+
+### Conclusion
+
+By following these steps, you should be able to determine if GLFW is installed on your system. If you find that it is not installed, 
+you can download it from the [GLFW website](https://www.glfw.org/) or install it using a package manager.
