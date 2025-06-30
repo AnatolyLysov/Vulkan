@@ -248,3 +248,52 @@ aikidance@aikidance:~/Vulkan-1/VulkanTest$ gcc -o HelloWorld HelloWorld.c -I/hom
 
 Vulkan instance created successfully!
 ------------------------------------------
+vulkan installation control
+
+vkcube
+vulkaninfo
+
+----------------------------------
+determine FGFW installed
+
+dpkg -l | grep glfw
+
+ikidance@aikidance:~/Vulkan-1$ dpkg -l | grep glfw
+ii  libglfw3:amd64                     3.3.10-1build1                          amd64        portable library for OpenGL, window and input (x11 libraries)
+ii  libglfw3-dev:amd64                 3.3.10-1build1                          amd64        portable library for OpenGL, window and input (development files)
+
+-------------------------------
+sudo apt update
+sudo apt install cmake
+----------------------------
+cmake
+Usage
+
+  cmake [options] <path-to-source>
+  cmake [options] <path-to-existing-build>
+  cmake [options] -S <path-to-source> -B <path-to-build>
+
+  cmake  -S SimpleVulkanGame_C/main.c -B SimpleVulkanGame_C/build
+
+Specify a source directory to (re-)generate a build system for it in the
+current working directory.  Specify an existing build directory to
+re-generate its build system.
+
+Run 'cmake --help' for more information.
+-------------------------
+
+aikidance@aikidance:/usr/bin$ cmake -DCMAKE_C_COMPILER_ENV_VAR=MY_CC -S /home/aikidance/Vulkan-1/SimpleVulkanGame_C/src/ -B /home/aikidance/Vulkan-1/SimpleVulkanGame_C/build
+
+------------
+unstage al added files
+
+git reset
+------------
+To always ignore a certain file or directory, add it to a file named ignore that's located inside the directory ~/. config/git .
+By default, Git will ignore any files and directories 
+that are listed in the global configuration file ~/. config/git/ignore .
+
+aikidance@aikidance:~/config/git$ nano ignore
+
+/home/aikidance/Vulkan-1/my/downloads
+--------------------
