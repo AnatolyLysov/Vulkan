@@ -1,4 +1,4 @@
-#define GLFW_INCLUDE_VULKAN
+/* #define GLFW_INCLUDE_VULKAN
 #include <GLFW/glfw3.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -50,4 +50,12 @@ int main() {
     cleanup(&app);
 
     return 0;
-}
+} */
+
+
+#include <stdio.h>
+
+   int main() {
+       printf("Hello, CMake!\n");
+       return 0;
+   }

@@ -1,0 +1,119 @@
+CMake is an excellent tool for managing the build process of C projects, as it provides a platform-independent way to define how your project should be built. 
+Below is a guide on how to use CMake specifically for C projects.
+
+### Getting Started with CMake for C Projects
+
+1. **Installation**:
+   - Before you can use CMake, you need to install it. You can download it from the [CMake website](https://cmake.org/download/), or you can install 
+   it using a package manager:
+     - **Ubuntu**: `sudo apt-get install cmake`
+     - **macOS**: `brew install cmake`
+     - **Windows**: Use the installer from the website or install via `choco install cmake` if you have Chocolatey.
+
+2. **Creating a Basic C Project**:
+   - Create a directory for your project, and inside that directory, create a source file (e.g., `main.c`) and a `CMakeLists.txt` file.
+
+   **Directory Structure**:
+   ```
+   MyCProject/
+   ├── CMakeLists.txt
+   └── main.c
+   ```
+
+   **Example `main.c`**:
+   ```c
+   #include <stdio.h>
+
+   int main() {
+       printf("Hello, CMake!\n");
+       return 0;
+   }
+   ```
+
+   **Example `CMakeLists.txt`**:
+   ```cmake
+   cmake_minimum_required(VERSION 3.10)  # Specify the minimum version of CMake
+   project(MyCProject C)                  # Define the project name and specify the language
+
+   # Add an executable target
+   add_executable(MyExecutable main.c)    # Create an executable from main.c
+   ```
+
+3. **Building the Project**:
+   - Open a terminal and navigate to your project directory. Create a build directory and run CMake to generate the build files.
+
+   ```bash
+   mkdir build
+   cd build
+   cmake ..
+   make
+   ```
+
+   - After running these commands, you should see a new executable file named `MyExecutable` in the `build` directory.
+
+4. **Running the Executable**:
+   - You can run the executable from the terminal:
+
+   ```bash
+   ./MyExecutable
+   ```
+
+   - This should output:
+   ```
+   Hello, CMake!
+   ```
+
+### Adding More Files and Libraries
+
+If your project grows and you want to add more source files or libraries, you can easily modify your `CMakeLists.txt`.
+
+1. **Adding Multiple Source Files**:
+   If you have multiple C source files, you can list them all in the `add_executable` command:
+
+   ```cmake
+   add_executable(MyExecutable main.c utils.c another_file.c)
+   ```
+
+2. **Using Libraries**:
+   If you want to link against a library, you can use `target_link_libraries`. For example, if you have a library named `mylib`:
+
+   ```cmake
+   find_library(MYLIB_LIBRARY NAMES mylib)
+   target_link_libraries(MyExecutable ${MYLIB_LIBRARY})
+   ```
+
+3. **Organizing Code into Directories**:
+   If you have a more complex project structure, you can organize your source files into directories. You can create subdirectories 
+   and add their `CMakeLists.txt` files:
+
+   ```
+   MyCProject/
+   ├── CMakeLists.txt
+   ├── src/
+   │   ├── main.c
+   │   ├── utils.c
+   │   └── another_file.c
+   └── include/
+       └── utils.h
+   ```
+
+   In the root `CMakeLists.txt`, you can add:
+
+   ```cmake
+   add_subdirectory(src)
+   ```
+
+   And in `src/CMakeLists.txt`, you can define the executable and include directories:
+
+   ```cmake
+   include_directories(../include)  # Include the header files
+   add_executable(MyExecutable main.c utils.c another_file.c)
+   ```
+
+### Conclusion
+
+CMake is a powerful tool that simplifies the build process for C projects. By using `CMakeLists.txt` files, you can define your project's structure, 
+manage dependencies, and create a build process that works across different platforms. The examples above illustrate the basics of 
+setting up a C project with CMake, but CMake also supports advanced features like custom commands, testing, and packaging.
+
+For more detailed information, you can refer to the official [CMake documentation](https://cmake.org/documentation/).

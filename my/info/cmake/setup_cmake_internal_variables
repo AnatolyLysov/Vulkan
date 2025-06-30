@@ -1,0 +1,55 @@
+In CMake, you can set internal variables such as CMAKE_C_COMPILER and CMAKE_C_COMPILER_ENV_VAR to control the C compiler that CMake uses for your project. 
+Here’s how you can set these variables:
+
+Setting CMake Compiler Variables
+CMAKE_C_COMPILER: This variable specifies the C compiler to use. You can set it when invoking CMake from the command line.
+
+
+CMAKE_C_COMPILER_ENV_VAR: This variable specifies the environment variable that CMake should check to find the C compiler.
+
+
+Setting the Variables via Command Line
+You can set these variables directly when you run the cmake command. Here’s an example of how to do this:
+
+bash
+
+
+mkdir build
+cd build
+cmake -DCMAKE_C_COMPILER=/path/to/your/compiler -DCMAKE_C_COMPILER_ENV_VAR=YOUR_COMPILER_ENV_VAR ..
+Example
+Assuming you have a specific C compiler located at /usr/bin/gcc, and you want to set an environment variable named MY_CC to use this compiler, 
+you could do the following:
+
+bash
+
+
+mkdir build
+cd build
+cmake -DCMAKE_C_COMPILER=/usr/bin/gcc -DCMAKE_C_COMPILER_ENV_VAR=MY_CC ..
+Setting Variables in CMakeLists.txt
+You can also set these variables within your CMakeLists.txt file, but note that setting CMAKE_C_COMPILER directly 
+in the CMakeLists.txt file is not recommended because it can lead to unexpected behavior. 
+However, you can set CMAKE_C_COMPILER_ENV_VAR:
+
+
+
+cmake
+set(CMAKE_C_COMPILER_ENV_VAR "MY_CC")
+Example of Using Environment Variables
+If you want to use an environment variable to specify the compiler, you can set it in your shell before running CMake:
+
+bash
+
+
+export MY_CC=/usr/bin/gcc
+mkdir build
+cd build
+cmake -DCMAKE_C_COMPILER_ENV_VAR=MY_CC ..
+Summary
+Use CMAKE_C_COMPILER to specify the C compiler directly when invoking CMake.
+Use CMAKE_C_COMPILER_ENV_VAR to specify an environment variable that contains the path to the compiler.
+Setting CMAKE_C_COMPILER in CMakeLists.txt is generally discouraged; instead, set it through the command line or environment variables.
+Note
+Make sure that the specified compiler is compatible with your project and that any necessary environment variables are correctly 
+set before running CMake. This will ensure that CMake can find and use the specified compiler correctly.

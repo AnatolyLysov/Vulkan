@@ -1,0 +1,23 @@
+cmake_minimum_required(VERSION 3.10)
+project(SimpleVulkanGame C)
+
+set(CMAKE_C_STANDARD 11)
+
+find_package(Vulkan REQUIRED)
+find_package(glfw3 REQUIRED)
+
+add_executable(SimpleVulkanGame main.c)
+
+target_include_directories(SimpleVulkanGame PRIVATE ${Vulkan_INCLUDE_DIRS})
+target_link_libraries(SimpleVulkanGame ${Vulkan_LIBRARIES} glfw)cmake_minimum_required(VERSION 3.10)
+project(SimpleVulkanGame C)
+
+set(CMAKE_C_STANDARD 11)
+
+find_package(Vulkan REQUIRED)
+find_package(glfw3 REQUIRED)
+
+add_executable(SimpleVulkanGame main.c)
+
+target_include_directories(SimpleVulkanGame PRIVATE ${Vulkan_INCLUDE_DIRS})
+target_link_libraries(SimpleVulkanGame ${Vulkan_LIBRARIES} glfw)
