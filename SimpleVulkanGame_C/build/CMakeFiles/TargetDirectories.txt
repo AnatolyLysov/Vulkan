@@ -1,0 +1,3 @@
+/home/aikidance/Vulkan-1/SimpleVulkanGame_C/build/CMakeFiles/SimpleVulkanGame_C.dir
+/home/aikidance/Vulkan-1/SimpleVulkanGame_C/build/CMakeFiles/edit_cache.dir
+/home/aikidance/Vulkan-1/SimpleVulkanGame_C/build/CMakeFiles/rebuild_cache.dir

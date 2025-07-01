@@ -39,7 +39,7 @@ void cleanup(VulkanApp* app) {
     vkDestroyInstance(app->instance, NULL);
     glfwDestroyWindow(app->window);
     glfwTerminate();
-}
+} 
 
 int main() {
     VulkanApp app;
@@ -50,12 +50,12 @@ int main() {
     cleanup(&app);
 
     return 0;
-} */
+}
+*/
 
-
-#include <stdio.h>
+ #include <stdio.h>
 
    int main() {
        printf("Hello, CMake!\n");
        return 0;
-   }
+   } 

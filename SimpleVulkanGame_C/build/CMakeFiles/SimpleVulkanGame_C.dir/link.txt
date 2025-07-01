@@ -1,0 +1,1 @@
+/usr/bin/gcc -g CMakeFiles/SimpleVulkanGame_C.dir/src/main.c.o -o SimpleVulkanGame_C 
